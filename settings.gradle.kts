@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("plugins")
     repositories {
         google()
         mavenCentral()
@@ -13,4 +14,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "TheNews"
-include ':app'
+include(":app")
+include(":core:ui")
