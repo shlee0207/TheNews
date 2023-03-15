@@ -25,6 +25,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.2"
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -33,7 +39,15 @@ android {
 dependencies {
     implementation libs.androidx.core.ktx
 
+    def composeBom = platform(libs.androidx.compose.bom)
+    implementation composeBom
+
+    implementation libs.androidx.compose.foundation
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.bundles.compose
+
     testImplementation 'junit:junit:4.13.2'
+    debugImplementation libs.compose.tooling
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
