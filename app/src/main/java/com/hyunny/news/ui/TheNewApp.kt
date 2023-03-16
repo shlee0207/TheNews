@@ -10,9 +10,14 @@ fun TheNewApp(
 
     Scaffold(
         bottomBar = {
-
+            BottomBar()
         }
     ) { padding ->
 
     }
+}
+
+@Composable
+fun BottomBar() {
+
 }
