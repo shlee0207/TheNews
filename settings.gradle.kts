@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TheNews"
 include(":app")
-include(":core:ui")
+include(":core:design")

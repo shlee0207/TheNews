@@ -1,4 +1,4 @@
-package com.hyunny.core.ui.theme
+package com.hyunny.core.design.theme
 
 import androidx.compose.ui.graphics.Color
 
