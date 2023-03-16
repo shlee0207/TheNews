@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.hyunny.core.design.theme.TheNewsTheme
 import com.hyunny.news.ui.TheNewApp
+import com.hyunny.news.ui.TheNewApp
+import com.hyunny.core.design.theme.TheNewsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
