@@ -16,3 +16,6 @@ dependencyResolutionManagement {
 rootProject.name = "TheNews"
 include(":app")
 include(":core:design")
+include(":feature:mynews")
+include(":feature:bookmarks")
+include(":feature:interests")

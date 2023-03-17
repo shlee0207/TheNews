@@ -50,6 +50,10 @@ android {
 
 dependencies {
     implementation project(':core:design')
+    implementation project(':feature:mynews')
+    implementation project(':feature:bookmarks')
+    implementation project(':feature:interests')
+
     implementation libs.androidx.core.ktx
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
     implementation 'androidx.activity:activity-compose:1.6.1'

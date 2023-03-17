@@ -39,7 +39,6 @@ private val LightColors = lightColorScheme(
     scrim = Color.Black,
 )
 
-
 private val DarkColors = darkColorScheme(
     primary = BlueGray10,
     onPrimary = Blue60,
