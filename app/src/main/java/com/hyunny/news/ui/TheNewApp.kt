@@ -1,8 +1,12 @@
 package com.hyunny.news.ui
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -28,24 +32,28 @@ import com.hyunny.news.navigation.TopScreen.Bookmarks
 import com.hyunny.news.navigation.TopScreen.Interests
 import com.hyunny.news.navigation.TopScreen.MyNews
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun TheNewApp(
-
+    navController: NavHostController = rememberNavController()
 ) {
-    val navController = rememberNavController()
     Scaffold(
         bottomBar = {
             BottomBar(navController)
         }
     ) {  padding ->
 
-        navController.currentDestination?.displayName
-
-        Column(Modifier.fillMaxSize()) {
-//            CenterAlignedTopAppBar(
-//                title = { Text() }
-//            )
+        Column(
+            Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .consumeWindowInsets(padding)
+        ) {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(navController.title())
+                }
+            )
 
             NavHost(navController = navController, startDestination = MyNews.route) {
                 composable(MyNews.route) { MyNews() }
@@ -54,6 +62,17 @@ fun TheNewApp(
             }
         }
     }
+}
+
+@Composable
+private fun NavHostController.title(): String {
+    val titleId = when (currentBackStackEntryAsState().value?.destination?.route) {
+        MyNews.route -> MyNews.titleResId
+        Bookmarks.route -> Bookmarks.titleResId
+        Interests.route -> Interests.titleResId
+        else -> null
+    }
+    return titleId?.let { stringResource(id = it) } ?: ""
 }
 
 @Composable
