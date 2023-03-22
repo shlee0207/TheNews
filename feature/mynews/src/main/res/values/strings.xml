@@ -1,0 +1,5 @@
+<resources>
+    <string name="guidance_title">What are you interested in?</string>
+    <string name="guidance_description">Headlines from topics you follow will appear here. Follow some things to get started.</string>
+    <string name="caption_move_to_follow">Follow the news topics</string>
+</resources>
