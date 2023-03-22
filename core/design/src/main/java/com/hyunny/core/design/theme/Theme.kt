@@ -84,6 +84,7 @@ fun TheNewsTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        content = content
+        content = content,
+        typography = TheNewsTypography
     )
 }
