@@ -26,7 +26,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hyunny.feature.bookmarks.Bookmarks
 import com.hyunny.feature.interests.Interests
-import com.hyunny.feature.mynews.MyNews
+import com.hyunny.feature.mynews.MyNewsScreen
 import com.hyunny.news.navigation.TopScreen
 import com.hyunny.news.navigation.TopScreen.Bookmarks
 import com.hyunny.news.navigation.TopScreen.Interests
@@ -50,13 +50,19 @@ fun TheNewApp(
                 .consumeWindowInsets(padding)
         ) {
             CenterAlignedTopAppBar(
-                title = {
-                    Text(navController.title())
-                }
+                title = { Text(navController.title()) }
             )
 
             NavHost(navController = navController, startDestination = MyNews.route) {
-                composable(MyNews.route) { MyNews() }
+                composable(MyNews.route) {
+                    MyNewsScreen(
+                        onNavigateToInterestsClicked = {
+                            navController.navigate(Interests.route) {
+                                popUpTo(MyNews.route) { inclusive = true}
+                            }
+                        }
+                    )
+                }
                 composable(Bookmarks.route) { Bookmarks() }
                 composable(Interests.route) { Interests() }
             }
