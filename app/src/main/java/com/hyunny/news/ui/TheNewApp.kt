@@ -25,7 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hyunny.feature.bookmarks.Bookmarks
-import com.hyunny.feature.interests.Interests
+import com.hyunny.feature.interests.InterestsScreen
 import com.hyunny.feature.mynews.MyNewsScreen
 import com.hyunny.news.navigation.TopScreen
 import com.hyunny.news.navigation.TopScreen.Bookmarks
@@ -64,7 +64,7 @@ fun TheNewApp(
                     )
                 }
                 composable(Bookmarks.route) { Bookmarks() }
-                composable(Interests.route) { Interests() }
+                composable(Interests.route) { InterestsScreen() }
             }
         }
     }
