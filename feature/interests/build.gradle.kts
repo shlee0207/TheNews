@@ -14,6 +14,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -42,6 +45,7 @@ android {
 
 dependencies {
     implementation(project(":core:domain"))
+    implementation(project(":core:model"))
 
     implementation(libs.androidx.core.ktx)
 
