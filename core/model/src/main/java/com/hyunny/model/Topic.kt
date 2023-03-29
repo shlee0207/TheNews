@@ -1,6 +1,6 @@
 package com.hyunny.model
 
-enum class Category(
+enum class Topic(
     val displayText: String
 ) {
     General("General"),

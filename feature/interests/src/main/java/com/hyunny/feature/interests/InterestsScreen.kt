@@ -15,18 +15,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.hyunny.model.Category
-import com.hyunny.model.Category.Business
-import com.hyunny.model.Category.Entertainment
-import com.hyunny.model.Category.General
-import com.hyunny.model.Category.Health
-import com.hyunny.model.Category.Science
-import com.hyunny.model.Category.Sports
-import com.hyunny.model.Category.Technology
+import com.hyunny.model.Topic
+import com.hyunny.model.Topic.Business
+import com.hyunny.model.Topic.Entertainment
+import com.hyunny.model.Topic.General
+import com.hyunny.model.Topic.Health
+import com.hyunny.model.Topic.Science
+import com.hyunny.model.Topic.Sports
+import com.hyunny.model.Topic.Technology
 
 @Composable
 fun InterestsScreen(
-    viewModel: InterestsViewModel,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -49,10 +48,10 @@ private fun CountrySelector() {
 
 @Composable
 private fun CategorySelector(
-    onCategoryClick: (Category) -> Unit
+    onCategoryClick: (Topic) -> Unit
 ) {
-    Category.values().forEach {
-        CategoryItem(onClick = { onCategoryClick(it) }, category = it)
+    Topic.values().forEach {
+        CategoryItem(onClick = { onCategoryClick(it) }, topic = it)
     }
 }
 
@@ -60,22 +59,22 @@ private fun CategorySelector(
 private fun CategoryItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    category: Category
+    topic: Topic
 ) {
     Row(
         modifier.padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            painter = painterResource(id = category.icon),
-            contentDescription = category.displayText
+            painter = painterResource(id = topic.icon),
+            contentDescription = topic.displayText
         )
-        Text(text = category.displayText)
+        Text(text = topic.displayText)
         // TODO. Add Checkbox
     }
 }
 
-private val Category.icon: Int
+private val Topic.icon: Int
     @DrawableRes get() = when (this) {
         General -> R.drawable.ic_newspaper
         Business -> R.drawable.ic_business
