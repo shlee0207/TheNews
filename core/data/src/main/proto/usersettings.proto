@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "com.hyunny.data.datastore";
 option java_multiple_files = true;
 
-message Interests {
+message UserSettings {
   map<string, bool> topics = 1;
   string country = 2;
 }
