@@ -8,5 +8,7 @@ class UserDataRepositoryImpl @Inject constructor(
     private val userSettingsDataSource: UserSettingsDataSource
 ): UserDataRepository {
 
-
+    override suspend fun toggleFollowedTopic(id: String, followed: Boolean) {
+        userSettingsDataSource.toggleFlowedTopic(id, followed)
+    }
 }
