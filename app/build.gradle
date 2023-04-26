@@ -54,6 +54,8 @@ android {
 
 dependencies {
     implementation project(':core:design')
+    implementation project(':core:domain')
+    implementation project(':core:data')
     implementation project(':feature:mynews')
     implementation project(':feature:bookmarks')
     implementation project(':feature:interests')

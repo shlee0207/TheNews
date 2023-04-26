@@ -1,20 +1,27 @@
 [versions]
 gradleplugin = "7.4.0"
 androidxCore = "1.9.0"
+androidxLifecycle = "2.6.0-alpha05"
 kotlin = "1.8.10"
 androidxComposeBom = "2023.01.00"
 compose = "1.3.3"
 compose_material = "1.1.0-alpha08"
 compose_navigation = "2.5.3"
 hilt = "2.44"
+hilt_navigation_compose = "1.0.0"
 splashscreen = "1.0.0"
 room = "2.5.0"
 androidxDataStore = "1.0.0"
+kotlinxSerializationJson = "1.4.1"
+retrofit = "2.9.0"
+retrofitKotlinxSerializationJson = "0.8.0"
+okhttp3 = "4.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore"}
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-material = { group = "androidx.compose.material3", name = "material3", version.ref = "compose_material" }
 compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
@@ -22,12 +29,18 @@ compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose_navigation" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt_navigation_compose" }
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
 androidx-dataStore = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
+okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
+okhttp3-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 
 [bundles]
 compose = ["compose_ui", "compose.material", "compose.tooling", "compose.navigation"]

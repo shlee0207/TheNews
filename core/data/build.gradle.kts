@@ -1,3 +1,4 @@
+
 import com.google.protobuf.gradle.builtins
 import com.google.protobuf.gradle.generateProtoTasks
 import com.google.protobuf.gradle.id
@@ -9,6 +10,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.protobuf") version "0.8.17"
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 android {
@@ -43,6 +45,7 @@ android {
 
 dependencies {
     implementation(project(":core:domain"))
+    implementation(project(":core:model"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.room.ktx)
@@ -54,6 +57,11 @@ dependencies {
 
     implementation(libs.androidx.dataStore)
     implementation("com.google.protobuf:protobuf-javalite:3.21.12")
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.okhttp3.okhttp)
+    implementation(libs.okhttp3.logging)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

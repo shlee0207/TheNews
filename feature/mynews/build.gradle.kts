@@ -54,8 +54,11 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.compose.ui.tooling.preview)
 
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
