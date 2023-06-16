@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface TopicRepository {
 
     fun getTopics(): Flow<List<Topic>>
+
 }

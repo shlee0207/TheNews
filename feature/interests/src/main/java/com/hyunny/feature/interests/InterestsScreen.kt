@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hyunny.domain.model.FollowableTopic
+import com.hyunny.feature.interests.R.drawable
 import com.hyunny.model.Topic
 
 @Composable
@@ -34,9 +36,13 @@ fun InterestsScreen(
         InterestsUiState.Loading -> {
             // TODO
         }
+
         is InterestsUiState.Interests -> {
             InterestsScreenContent(
-                uiState.topics
+                uiState.topics,
+                onFollowButtonClick = {
+                    viewModel.toggleFollowableTopic(it)
+                }
             )
         }
     }
@@ -45,21 +51,20 @@ fun InterestsScreen(
 @Composable
 private fun InterestsScreenContent(
     topics: List<FollowableTopic>,
+    onFollowButtonClick: (FollowableTopic) -> Unit,
     modifier: Modifier = Modifier
+) = Column(
+    modifier
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())
 ) {
-    Column(
-        modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-    ) {
-        CountrySelector()
-        Divider()
-        Topics(
-            topics = topics,
-            onTopicClick = { /*TODO*/ },
-            onFollowButtonClick = {  }
-        )
-    }
+    CountrySelector()
+    Divider()
+    Topics(
+        topics = topics,
+        onTopicClick = { /*TODO*/ },
+        onFollowButtonClick = onFollowButtonClick
+    )
 }
 
 @Composable
@@ -71,53 +76,54 @@ private fun CountrySelector() {
 private fun Topics(
     topics: List<FollowableTopic>,
     onTopicClick: (Topic) -> Unit,
-    onFollowButtonClick: () -> Unit,
+    onFollowButtonClick: (FollowableTopic) -> Unit,
     modifier: Modifier = Modifier
-) {
-    Column(modifier) {
-        topics.forEach {
-            TopicItem(
-                item = it,
-                onClick = { onTopicClick(it.topic) },
-                onFollowButtonClick = { onFollowButtonClick() }
-            )
-        }
+) = Column(modifier) {
+    topics.forEach {
+        TopicItem(
+            item = it,
+            onItemClick = { onTopicClick(it.topic) },
+            onFollowButtonClick = { onFollowButtonClick(it) }
+        )
     }
 }
 
 @Composable
 private fun TopicItem(
     item: FollowableTopic,
-    onClick: () -> Unit,
+    onItemClick: () -> Unit,
     onFollowButtonClick: () -> Unit,
     modifier: Modifier = Modifier
+) = Row(
+    modifier
+        .clickable { onItemClick() }
+        .padding(16.dp),
+    verticalAlignment = Alignment.CenterVertically
 ) {
-    Row(
-        modifier
-            .clickable { onClick() }
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+    Icon(
+        painter = painterResource(id = item.topic.icon),
+        contentDescription = item.topic.name,
+        tint = Color.Unspecified
+    )
+    Text(
+        text = item.topic.name,
+        style = MaterialTheme.typography.titleMedium,
+        modifier = Modifier
+            .weight(1f)
+            .padding(horizontal = 16.dp),
+    )
+    IconButton(
+        onClick = { onFollowButtonClick() },
     ) {
-        Icon(
-            painter = painterResource(id = item.topic.icon),
-            contentDescription = item.topic.name,
-            tint = Color.Unspecified
-        )
-        Text(
-            text = item.topic.name,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
-        )
         Icon(
             painter = painterResource(
                 if (item.isFollowed) {
-                    R.drawable.ic_check_circle_24
+                    drawable.ic_check_circle_24
                 } else {
-                    R.drawable.ic_add_24
+                    drawable.ic_add_24
                 }
             ),
             contentDescription = item.topic.name,
-            modifier = Modifier.clickable { onFollowButtonClick() },
         )
     }
 }

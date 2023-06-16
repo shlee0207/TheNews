@@ -10,29 +10,48 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hyunny.feature.mynews.R.string
+import com.hyunny.model.Article
 
 @Composable
 fun MyNewsScreen(
-    onNavigateToInterestsClicked: () -> Unit
+    onNavigateToInterestsClick: () -> Unit,
+    viewModel: MyNewsViewModel = hiltViewModel()
 ) {
-    Guidance(
-        onFollowButtonClick = onNavigateToInterestsClicked
-    )
+    val onboardingUiState by viewModel.onboardingUiState.collectAsStateWithLifecycle()
+    val feedUiState by viewModel.feedUiState.collectAsStateWithLifecycle()
+
+    when (onboardingUiState) {
+        OnboardingUiState.Loading -> {}
+        OnboardingUiState.Shown -> {
+            OnBoarding(
+                onFollowButtonClick = onNavigateToInterestsClick
+            )
+        }
+        OnboardingUiState.NotShown -> {
+            Headlines(feedUiState)
+        }
+    }
 }
 
 @Composable
-fun Guidance(
+private fun OnBoarding(
     modifier: Modifier = Modifier,
     onFollowButtonClick: () -> Unit = {}
 ) {
     Column(
-        modifier = modifier.fillMaxSize().padding(vertical = 48.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(vertical = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -50,13 +69,50 @@ fun Guidance(
             onClick = { onFollowButtonClick() },
             modifier = Modifier.width(250.dp)
         ) {
-            Text(stringResource(id = R.string.caption_move_to_follow))
+            Text(stringResource(id = string.caption_move_to_follow))
         }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GuidancePreview() {
-    Guidance()
+private fun Headlines(
+    feedUiState: FeedUiState,
+    modifier: Modifier = Modifier
+) {
+    when (feedUiState) {
+        FeedUiState.Loading -> {}
+        is FeedUiState.Success -> {
+           Headlines(articles = feedUiState.articles)
+        }
+     }
+}
+
+@Composable
+private fun Headlines(
+    articles: List<Article>,
+    modifier: Modifier = Modifier
+) {
+
+    Column {
+        articles.forEach {
+            Article(it)
+        }
+
+    }
+}
+
+@Composable
+private fun Article(
+    article: Article,
+    modifier: Modifier = Modifier
+) {
+   Text(text = article.content)
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun OnBoardingPreview() {
+    MaterialTheme {
+        OnBoarding()
+    }
 }

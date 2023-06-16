@@ -1,0 +1,6 @@
+package com.hyunny.model
+
+data class Source(
+    val id: String?,
+    val name: String
+)

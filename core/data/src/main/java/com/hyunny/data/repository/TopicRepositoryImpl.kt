@@ -21,4 +21,5 @@ class TopicRepositoryImpl @Inject constructor(
             }
         )
     }
+
 }

@@ -1,7 +1,9 @@
 package com.hyunny.data.di
 
+import com.hyunny.data.repository.NewsRepositoryImpl
 import com.hyunny.data.repository.TopicRepositoryImpl
 import com.hyunny.data.repository.UserDataRepositoryImpl
+import com.hyunny.domain.repository.NewsRepository
 import com.hyunny.domain.repository.TopicRepository
 import com.hyunny.domain.repository.UserDataRepository
 import dagger.Binds
@@ -24,4 +26,11 @@ interface DataModule {
     fun bindsTopicRepository(
         topicRepository: TopicRepositoryImpl
     ): TopicRepository
+
+    @Binds
+    @Singleton
+    fun bindsNewsRepository(
+        newsRepository: NewsRepositoryImpl
+    ): NewsRepository
+
 }

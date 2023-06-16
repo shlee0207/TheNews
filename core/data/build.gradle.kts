@@ -1,4 +1,5 @@
 
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.google.protobuf.gradle.builtins
 import com.google.protobuf.gradle.generateProtoTasks
 import com.google.protobuf.gradle.id
@@ -23,6 +24,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "NEWS_API_KEY", getApiKey("news_api_key"))
     }
 
     buildTypes {
@@ -41,6 +44,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+fun getApiKey(propertyKey: String): String {
+    return gradleLocalProperties(rootDir).getProperty(propertyKey)
 }
 
 dependencies {

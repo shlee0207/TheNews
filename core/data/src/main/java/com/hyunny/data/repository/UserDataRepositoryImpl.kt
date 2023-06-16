@@ -15,4 +15,5 @@ class UserDataRepositoryImpl @Inject constructor(
     override suspend fun toggleFollowedTopic(id: Int, followed: Boolean) {
         userSettingsDataSource.toggleFlowedTopic(id, followed)
     }
+
 }

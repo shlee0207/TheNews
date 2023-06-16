@@ -28,4 +28,5 @@ object DataStoreModule {
         ) {
             context.dataStoreFile("usersetting.proto")
         }
+
 }

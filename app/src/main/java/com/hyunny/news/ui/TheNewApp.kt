@@ -56,7 +56,7 @@ fun TheNewApp(
             NavHost(navController = navController, startDestination = MyNews.route) {
                 composable(MyNews.route) {
                     MyNewsScreen(
-                        onNavigateToInterestsClicked = {
+                        onNavigateToInterestsClick = {
                             navController.navigate(Interests.route) {
                                 popUpTo(MyNews.route) { inclusive = true}
                             }

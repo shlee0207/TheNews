@@ -1,7 +1,7 @@
 package com.hyunny.data.network
 
 import android.content.Context
-import com.hyunny.data.network.model.TopicResponse
+import com.hyunny.data.network.model.NetworkTopic
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
@@ -15,7 +15,8 @@ class FakeTopicApi(
     }
 
     @OptIn(ExperimentalSerializationApi::class)
-    override suspend fun getTopics(): List<TopicResponse> {
+    override suspend fun getTopics(): List<NetworkTopic> {
         return context.assets.open(TOPICS_ASSET).use(Json::decodeFromStream)
     }
+
 }
