@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -77,7 +79,6 @@ private fun OnBoarding(
 @Composable
 private fun Headlines(
     feedUiState: FeedUiState,
-    modifier: Modifier = Modifier
 ) {
     when (feedUiState) {
         FeedUiState.Loading -> {}
@@ -92,21 +93,11 @@ private fun Headlines(
     articles: List<Article>,
     modifier: Modifier = Modifier
 ) {
-
-    Column {
-        articles.forEach {
-            Article(it)
+    LazyColumn(modifier) {
+        items(articles) {
+            ArticlePoster(article = it)
         }
-
     }
-}
-
-@Composable
-private fun Article(
-    article: Article,
-    modifier: Modifier = Modifier
-) {
-   Text(text = article.content)
 }
 
 @Preview(showBackground = true, showSystemUi = true)

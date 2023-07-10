@@ -46,6 +46,7 @@ android {
 dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
+    implementation(project(":core:design"))
 
     implementation(libs.androidx.core.ktx)
 
@@ -60,6 +61,8 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.coil)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
